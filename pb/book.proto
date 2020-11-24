@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+message BookPayload {
+  int32 Pages = 1;
+  int32 Year = 2;
+  string Title = 3;
+  string Content = 4;
+}
+
+message Book {
+  string ID = 1;
+  int32 Pages = 2;
+  int32 Year = 3;
+  string Title = 4;
+  string Content = 5;
+}
+
+message Books {
+  repeated Book AllBook = 1;
+}
+
+message Message {
+  string Message = 1;
+  string Error = 2;
+}
+
+message BookId {
+  string ID = 1;
+}
+
+message UpdateBook {
+  BookId Id = 1;
+  BookPayload Book = 2;
+}
+
+service BookGrpc {
+  rpc GetAllBook(Message) returns(Books);
+  rpc GetByIdBook(BookId) returns(Book);
+  rpc DelByIdBook(BookId) returns(Message);
+  rpc CreateNewBook(BookPayload) returns(Message);
+  rpc UpdateByIdBook(UpdateBook) returns (Message);
+}

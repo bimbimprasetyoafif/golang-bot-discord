@@ -1,0 +1,4 @@
+{
+  "token": "app-bot-token",
+  "grpc-server": "localhost:50051"
+}
